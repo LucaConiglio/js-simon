@@ -8,9 +8,9 @@
 //collego il container
 const container = document.querySelector(".container");
 let h2Random;
-
-let arrayNumeriUtente = []
-
+let sceltaUtente = document.querySelector(".scelta-utente");
+let arrayNumeriUtente = [];
+sceltaUtente.classList.add("d-none");
 //creo un ciclo per generare i numeri random
 for(let i = 0; i < 5; i++ ) {
 
@@ -20,18 +20,14 @@ for(let i = 0; i < 5; i++ ) {
     //creo un numero random
     let numeroRandom = Math. floor(Math. random()*100);
 
-    //pushiamo nell'array in numero random
-    arrayNumeriUtente.push(numeroRandom)
+    //pushiamo i numeri random nell'array numeriUtente
+    arrayNumeriUtente.push(numeroRandom);
 
     //aggiungo i numeri tramite text content e la formula math random
-    h2Random.textContent = numeroRandom
+    h2Random.textContent = numeroRandom;
 
     //appendo tutto al container
-
     container.append (h2Random);
-    
-    
-
 }
 
 //setto il timeout a 30 secondi dopo 30 secondi, aggiungo il d-none ai numeri rundom
@@ -40,71 +36,70 @@ setTimeout( function(){
     //creo una variabile e collego gli h2
     let numeri = document.querySelectorAll("h2");
 
-
     //per tutti gli h2 aggiungo la classe d-none 
     numeri.forEach((h2) => {
-        h2.classList.add("d-none");
+    h2.classList.add("d-none");
     })
+
+    sceltaUtente.classList.remove("d-none")
     //timer espresso in millisecondi 1000 = a  1 sec
-}, 5000)
+}, 30000)
 
-
+//collego il container 2
 let container2 = document.querySelector(".container2");
+//creo un array vuota
+let numeriUtenteIndividuati = [];
+//creo array vuota
+let numeriUtenteErrati = [];
+//collego al container
+let numeriIndividuati = document.querySelector(".numeri-individuati");
+//collego al container
+let numeriErrati = document.querySelector(".numeri-errati");
 
-let numeriIndividuati = []
-let numeriErrati = []
-let numeriEsatti = document.querySelector(".numeri-individuati");
-let numeriSbagliati = document.querySelector(".numeri-errati");
 
-
-setTimeout( function(){
+//funzione timeout
+setTimeout( function() {
+   
     
-
+    //creo un ciclo for per i prompt
     for (let j = 0; j<5; j++){
          let numeriScelti = prompt("inserisci i numeri che hai visto");
+         //trasformo quello che mi scrive l'utente in numero
          numeriScelti = parseInt(numeriScelti);
          console.log(numeriScelti);
-        
+
+        //se l'array numeUtente include numeriScelti creiamo un h2 con contenuto in numero stesso
+        // e aggiungiamo all'array numeriUtenteIndividuati i numeriScelti
         if (arrayNumeriUtente.includes(numeriScelti)){
             let random = document.createElement ("h2");
             random.textContent = numeriScelti
             container2.append (random);
-            numeriIndividuati.push(numeriScelti)
-
-        } else {
+            numeriUtenteIndividuati.push(numeriScelti)
+        //oppure aggiungiamo i numeri errati che non sono inclusi dell'array numeriUtente
+        //nell array numeriUtenteErrati
+        } else { 
             let random = document.createElement ("h2");
-            random.textContent = numeriScelti + " errato";
+            random.textContent = numeriScelti;
             container2.append (random);
-            numeriErrati.push(numeriScelti);
-            
+            numeriUtenteErrati.push(numeriScelti);
         }
-        
-
-        
-
-        let numeri = document.querySelectorAll("h2");
-    //per tutti gli h2 aggiungo la classe d-none 
-    numeri.forEach((h2) => {
-        h2.classList.remove("d-none");
-    })
     }
-    setTimeout ( function (){
-        let esatti = document.createElement("h3");
-        esatti.textContent = `i numeri individuati sono ${numeriIndividuati.length} e sono: ${numeriIndividuati}`;
-        numeriEsatti.append(esatti);
+    //collego tutti gli h2 tramite il queryselectorall
+    let numeri = document.querySelectorAll("h2");
 
-        let brutti = document.createElement("h3");
-        brutti.textContent = `i numeri errati sono ${numeriErrati.length} e sono ${numeriErrati}`
-        numeriSbagliati.append(brutti);
+    //per tutti gli h2 rimuovo la classe d-none 
+    numeri.forEach((h2) => {
+    h2.classList.add("d-block");
+    })
     
 
+    let esatti = document.createElement("h3");
+    esatti.textContent = `i numeri individuati sono ${numeriUtenteIndividuati.length} e sono: ${numeriUtenteIndividuati};`;
+    numeriIndividuati.append(esatti);
 
-        }, 2000)
+    let inesatti = document.createElement("h3");
+    inesatti.textContent = `i numeri errati sono ${numeriUtenteErrati.length} e sono ${numeriUtenteErrati};`
+    numeriErrati.append(inesatti);
 
-    let numeriEsatti = document.querySelector(".numeri-individuati");
-    let numeriSbagliati = document.querySelector("numeri-errati");
+}, 31500)
 
-    let containerTre = document.querySelector(".container3")
-    containerTre.innerHTML = "i numeri da te scelti sono"
-    
-}, 7000)

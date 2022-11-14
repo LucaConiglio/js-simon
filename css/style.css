@@ -7,10 +7,11 @@
 
 h1{
     text-align: center;
-    padding-bottom: 2rem;
+    padding-bottom: 0.5rem;
 }
 h2{
-    padding: 2rem;
+    padding: 1rem;
+    color: blueviolet;
 }
 .container{
     display: flex;
@@ -27,4 +28,7 @@ h2{
 .numeri-individuati, .numeri-errati{
     display: flex;
     justify-content: center;
+}
+.d-block{
+    display: block;
 }
