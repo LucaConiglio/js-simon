@@ -1,0 +1,30 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+h1{
+    text-align: center;
+    padding-bottom: 2rem;
+}
+h2{
+    padding: 2rem;
+}
+.container{
+    display: flex;
+    justify-content: center;
+
+}
+.container2{
+    display: flex;
+    justify-content: center;
+}
+.d-none{
+    display: none;
+}
+.numeri-individuati, .numeri-errati{
+    display: flex;
+    justify-content: center;
+}
